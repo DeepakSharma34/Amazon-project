@@ -3,11 +3,8 @@ import {products , getProduct} from '../../data/products.js';
 import {formatCurrency} from '../utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import {deliveryOptions , getdeliveryOption} from '../../data/deliveryOptions.js';
+import { renderPaymentSummary } from './paymentSummary.js';
 
-
-const todayDates = dayjs();
-const dates = todayDates.format('dddd , MMMM D');
-console.log(dates);
 
 export  function renderOrdersummary() 
 {
@@ -119,6 +116,8 @@ export  function renderOrdersummary()
           `.js-cart-item-container-${productId}`
         );
         container.remove();
+
+        renderPaymentSummary();
       });
     });
 
@@ -130,6 +129,7 @@ export  function renderOrdersummary()
               updateDeliveryOption(productId , deliveryOptionId);
 
               renderOrdersummary();
+              renderPaymentSummary();
         });
     });
 
