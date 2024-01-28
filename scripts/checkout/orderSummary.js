@@ -123,6 +123,7 @@ export  function renderOrdersummary()
         container.remove();
 
         renderPaymentSummary();
+        updateCartQuantity();
       });
     });
 
@@ -137,7 +138,18 @@ export  function renderOrdersummary()
               renderPaymentSummary();
         });
     });
+  function updateCartQuantity() {
+    let cartQuantity = 0;
 
+    cart.forEach((cartItem) => {
+      cartQuantity += cartItem.quantity;
+    });
+    
+    document.querySelector('.js-return-to-home-link')
+      .innerHTML = `${cartQuantity} items`;
+  }
+  updateCartQuantity();
+   
     document.querySelectorAll('.js-update-link')
   .forEach((link) => {
     link.addEventListener('click', () => {
